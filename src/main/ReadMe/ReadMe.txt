@@ -5,6 +5,9 @@ Il progetto gestisce edifici, postazioni, utenti e prenotazioni, con vincoli di 
 
 Ho implementato il modello dati tramite le entity JPA (Edificio, Postazione, Utente, Prenotazione) e la persistenza con Spring Data JPA, creando le repository
 e i service necessari. Ho aggiunto un runner per popolare il database e testare le funzionalità principali.
+Nel processo di salvataggio dei dati ho applicato il metodo 'PternBuilder' che ho appreso guardando esempi di codice nella libreria di Lombok.
+https://projectlombok.org/features/Builder
+Mi sembrava molto interessante come metodo e molto chiaro anche nella lettura e struttura.
 
 Durante lo sviluppo ho incontrato alcune difficoltà, come errori di mapping JPA dovuti a import sbagliati, problemi di compilazione per mancata ricompilazione
 dopo modifiche ai service, e la gestione delle eccezioni quando si cercano entità non presenti nel database. Ho risolto questi problemi ricompilando il progetto,
