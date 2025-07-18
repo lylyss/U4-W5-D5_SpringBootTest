@@ -22,7 +22,7 @@ public class Postazione {
     private String descrizione;
     @Enumerated(EnumType.STRING)
     private TipoPostazione tipo;
-    private int maxOccupanti;
+    private int max_occupanti;
     @ManyToOne
     private Edificio edificio;
 }
