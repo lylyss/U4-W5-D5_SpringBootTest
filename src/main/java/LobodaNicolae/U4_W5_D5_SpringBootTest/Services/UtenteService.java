@@ -24,9 +24,9 @@ public class UtenteService {
         return utenteRepository.findAll();
     }
 
-    // Cerca un utente per ID, lancia eccezione se non trovato
-    public Utente findById(Long id) {
-        return utenteRepository.findById(id)
+    // Cerca un utente per username, lancia eccezione se non trovato
+    public Utente findByUsername(String username) {
+        return utenteRepository.findByUsername(username)
                 .orElseThrow(() -> new NotFoundException("Utente non trovato"));
     }
 
@@ -35,5 +35,3 @@ public class UtenteService {
         utenteRepository.deleteById(id);
     }
 }
-
-

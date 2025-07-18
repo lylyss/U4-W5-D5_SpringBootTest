@@ -1,10 +1,8 @@
 package LobodaNicolae.U4_W5_D5_SpringBootTest.Runner;
 
-import LobodaNicolae.U4_W5_D5_SpringBootTest.Entities.Edificio;
 import LobodaNicolae.U4_W5_D5_SpringBootTest.Entities.Postazione;
 import LobodaNicolae.U4_W5_D5_SpringBootTest.Entities.Prenotazione;
 import LobodaNicolae.U4_W5_D5_SpringBootTest.Entities.Utente;
-import LobodaNicolae.U4_W5_D5_SpringBootTest.Enums.TipoPostazione;
 import LobodaNicolae.U4_W5_D5_SpringBootTest.Services.EdificioService;
 import LobodaNicolae.U4_W5_D5_SpringBootTest.Services.PostazioneService;
 import LobodaNicolae.U4_W5_D5_SpringBootTest.Services.PrenotazioneService;
@@ -29,7 +27,7 @@ public class PrenotazioneRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Crea edificio
+      /*  // Crea edificio
         Edificio edificio = edificioService.save(Edificio.builder()
                 .nome("Business Center")
                 .indirizzo("Viale del lavoro 123")
@@ -96,39 +94,32 @@ public class PrenotazioneRunner implements CommandLineRunner {
                 .max_occupanti(10)
                 .edificio(edificio2)
                 .build());
-        System.out.println("Postazione creata: " + postazione);
+        System.out.println("Postazione creata: " + postazione);*/
+        /*-------------------Creazione prenotazione con dati dal db --------------------------*/
 
-        //Data della prenotazione
-        LocalDate dataPrenotazione = LocalDate.now();
+        // Esempio di prenotazione con dati dal database
+        try {
+            Utente utenteDb = utenteService.findByUsername("anna003");
+            Postazione postazioneDb = postazioneService.findByCodice("POST03");
+            LocalDate data = LocalDate.now().plusDays(1);
 
-        // Verifica se la prenotazione è valida
-        if (prenotazioneService.isPrenotazioneValida(utente, postazione, dataPrenotazione)) {
-            Prenotazione prenotazione = prenotazioneService.save(Prenotazione.builder()
-                    .utente(utente)
-                    .postazione(postazione)
-                    .data(dataPrenotazione)
-                    .build());
-            System.out.println("Prenotazione effettuata: " + prenotazione);
-        } else {
-            System.out.println("Prenotazione non valida: postazione occupata o utente già prenotato per questa data.");
+            if (prenotazioneService.isPrenotazioneValida(utenteDb, postazioneDb, data)) {
+                Prenotazione nuovaPrenotazione = prenotazioneService.save(Prenotazione.builder()
+                        .utente(utenteDb)
+                        .postazione(postazioneDb)
+                        .data(data)
+                        .build());
+                System.out.println("-----------Prenotazione effettuata con successo!-----------");
+                System.out.println("Nuova prenotazione effettuata: " + nuovaPrenotazione);
+            } else {
+                System.out.println("-----------Prenotazione non valida!-----------");
+                System.out.println("Prenotazione non valida.");
+            }
+        } catch (Exception e) {
+            System.out.println("Errore durante la prenotazione: " + e.getMessage());
         }
-        //funzionante
-        // Prova a fare una seconda prenotazione per lo stesso utente e data (deve fallire)
-        if (prenotazioneService.existsByUtenteAndData(utente, dataPrenotazione)) {
-            System.out.println("L'utente ha già una prenotazione per questa data.");
-        } else if (prenotazioneService.existsByPostazioneAndData(postazione, dataPrenotazione)) {
-            System.out.println("La postazione è già prenotata per questa data.");
-        } else if (prenotazioneService.isPrenotazioneValida(utente, postazione, dataPrenotazione)) {
-            Prenotazione prenotazione2 = prenotazioneService.save(Prenotazione.builder()
-                    .utente(utente)
-                    .postazione(postazione)
-                    .data(dataPrenotazione)
-                    .build());
-            System.out.println("Prenotazione effettuata: " + prenotazione2);
-        } else {
-            System.out.println("Seconda prenotazione non valida: regola rispettata.");
-        }
+
+
     }
 
 }
-

@@ -40,5 +40,9 @@ public class PostazioneService {
         return postazioneRepository.findByTipoAndEdificio_Citta(tipo, citta);
     }
 
+    public Postazione findByCodice(String post03) {
+        return postazioneRepository.findByCodice(post03)
+                .orElseThrow(() -> new NotFoundException("Postazione con codice " + post03 + " non trovata"));
+    }
 }
 
