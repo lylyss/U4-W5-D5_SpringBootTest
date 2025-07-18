@@ -1,8 +1,10 @@
 package LobodaNicolae.U4_W5_D5_SpringBootTest.Runner;
 
+import LobodaNicolae.U4_W5_D5_SpringBootTest.Entities.Edificio;
 import LobodaNicolae.U4_W5_D5_SpringBootTest.Entities.Postazione;
 import LobodaNicolae.U4_W5_D5_SpringBootTest.Entities.Prenotazione;
 import LobodaNicolae.U4_W5_D5_SpringBootTest.Entities.Utente;
+import LobodaNicolae.U4_W5_D5_SpringBootTest.Enums.TipoPostazione;
 import LobodaNicolae.U4_W5_D5_SpringBootTest.Services.EdificioService;
 import LobodaNicolae.U4_W5_D5_SpringBootTest.Services.PostazioneService;
 import LobodaNicolae.U4_W5_D5_SpringBootTest.Services.PrenotazioneService;
@@ -27,7 +29,7 @@ public class PrenotazioneRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-      /*  // Crea edificio
+        // Crea edificio
         Edificio edificio = edificioService.save(Edificio.builder()
                 .nome("Business Center")
                 .indirizzo("Viale del lavoro 123")
@@ -94,7 +96,7 @@ public class PrenotazioneRunner implements CommandLineRunner {
                 .max_occupanti(10)
                 .edificio(edificio2)
                 .build());
-        System.out.println("Postazione creata: " + postazione);*/
+        System.out.println("Postazione creata: " + postazione);
         /*-------------------Creazione prenotazione con dati dal db --------------------------*/
 
         // Esempio di prenotazione con dati dal database
